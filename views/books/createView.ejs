@@ -1,0 +1,32 @@
+<%- include ../layouts/header.ejs %>
+<body>
+  <br>
+  <br>
+  <div class="container">
+    <h2><%= title %> </h2>
+    <form method="post" action="/books">
+      <div class="form-group">
+        <label for="name">Nombre</label>
+        <input id="name" class="form-control" type="text" name="name" placeholder="Nombre del libro">
+      </div>
+      <br>
+      <div class="custom-file">
+        <label for="image" class="custom-file-label">Imagen</label>
+        <input id="image" class="custom-file-input" type="file" name="image">
+      </div>
+      <br>
+      <div class="form-group">
+        <label for="idAuthor">Autor</label>
+        <select id="idAuthor" class="custom-select" name="idAuthor">
+          <% for( let author = 0; author < authors.length; author++ ) { %>
+            <option value="<%= authors[author].id %>"> <%= authors[author].name %></option>
+          <% } %>
+        </select>
+      </div>
+      <br>
+      <button class="btn btn-primary" type="submit">Guardar</button>
+      <a href="/books" class="btn btn-danger" type="button">Cancelar</a>
+    </form>
+  </div>
+</body>
+<%- include ../layouts/footer.ejs %>

@@ -9,7 +9,7 @@ module.exports = {
       const context = {
         title: 'Autores',
       }
-      res.render('authorsView', context);
+      res.render('authors/authorsView', context);
     })
   }
 }

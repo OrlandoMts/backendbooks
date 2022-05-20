@@ -1,0 +1,35 @@
+<%- include ../layouts/header.ejs %>
+<body>
+  <br>
+  <div class="d-flex flex-row">
+    <h1><%= title %></h1>
+    <div>
+      <a href="/books/create" class="btn btn-primary" type="button">Aregar libro</a>
+    </div>
+  </div>
+
+  <br>
+  <div class="container">
+    <table class="table table-light">
+      <thead class="thead-light">
+        <tr>
+          <th>#ID</th>
+          <th>Nombre</th>
+          <th>Imagen</th>
+          <th>Opciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for( let book = 0; book < books.length; book++ ) { %>
+          <tr>
+            <td> <%= books[book].id %>  </td>
+            <td> <%= books[book].name %> </td>
+            <td> <%= books[book].image %> </td>
+            <td>Editar | Borrar</td>
+          </tr>
+        <% } %>
+      </tbody>
+    </table>
+  </div>
+</body>
+<%- include ../layouts/footer.ejs %>
