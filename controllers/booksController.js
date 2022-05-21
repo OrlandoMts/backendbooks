@@ -2,6 +2,7 @@
 var con = require("../conf/connection");
 var bookModel = require("../models/book");
 var authorModel = require("../models/authors");
+const fileSystem = require("fs");
 
 module.exports = {
   // eslint-disable-next-line no-unused-vars
@@ -40,6 +41,26 @@ module.exports = {
       } catch (err) {
         res.send(err)
       }
+    })
+  },
+
+  delete: function (req, res) {
+    bookModel.getBookById(con, req.params, (err, rows) => {
+      //Asi obtengo la ruta de la imagen
+      let imageRoute = "public/images/" + rows[0].image;
+
+      //Busco primero si existe la imagen y con unlinkSync la borro
+      if(fileSystem.existsSync(imageRoute)) {
+        fileSystem.unlinkSync(imageRoute)
+      }
+
+      bookModel.deleteBook(con, req.params, (err) => {
+        if(err) {
+          res.send(err)
+        } else {
+          res.redirect('/books')
+        }
+      })
     })
   }
 };
