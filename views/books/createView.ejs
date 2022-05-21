@@ -4,7 +4,8 @@
   <br>
   <div class="container">
     <h2><%= title %> </h2>
-    <form method="post" action="/books">
+    <!-- El atributo enctype sirve para poder adjuntar la imagen -->
+    <form method="post" action="/books" enctype="multipart/form-data">
       <div class="form-group">
         <label for="name">Nombre</label>
         <input id="name" class="form-control" type="text" name="name" placeholder="Nombre del libro">

@@ -33,6 +33,13 @@ module.exports = {
   },
 
   save: function (req, res) {
-    res.send(req.body)
+    //req.file contiene el nombre del archivo de la imagen
+    bookModel.insertBook(con, req.body, req.file, (err) =>{
+      try {
+        res.redirect('/books');
+      } catch (err) {
+        res.send(err)
+      }
+    })
   }
 };

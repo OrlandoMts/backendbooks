@@ -5,6 +5,7 @@
     <h1><%= title %></h1>
     <div>
       <a href="/books/create" class="btn btn-primary" type="button">Aregar libro</a>
+      <a href="../" class="btn btn-secondary" type="button">Inicio</a>
     </div>
   </div>
 
@@ -24,8 +25,19 @@
           <tr>
             <td> <%= books[book].id %>  </td>
             <td> <%= books[book].name %> </td>
-            <td> <%= books[book].image %> </td>
-            <td>Editar | Borrar</td>
+            <td> <img class="img-thumbnail" width="100" src="images/<%=books[book].image %>" alt=""> </td>
+            <td>
+              <div class="btn-group-vertical" role="group" aria-label="Vertical button group">
+                <form class="form-inline" method="post" action="books/edit/<%= books[book].id %> ">
+                  <button class="btn btn-warning" type="submit">Editar</button>
+                </form>
+              </div>
+              <div class="btn-group-vertical" role="group" aria-label="Vertical button group">
+                <form class="form-inline" method="post" action="books/delete/<%= books[book].id %> ">
+                  <button class="btn btn-danger" type="submit">Eliminar</button>
+                </form>
+              </div>
+            </td>
           </tr>
         <% } %>
       </tbody>

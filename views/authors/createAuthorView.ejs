@@ -1,0 +1,15 @@
+<%- include ../layouts/header.ejs %>
+<div class="container">
+  <h2><%= title %> </h2>
+  <form method="post" action="/authors">
+    <div class="form-group">
+      <label for="name">Nombre</label>
+      <input id="name" class="form-control" type="text" name="name" placeholder="Nombre del autor">
+    </div>
+    <br>
+    <br>
+    <button class="btn btn-primary" type="submit">Guardar</button>
+    <a href="/authors" class="btn btn-danger" type="button">Cancelar</a>
+  </form>
+</div>
+<%- include ../layouts/footer.ejs %>
