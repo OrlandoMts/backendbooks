@@ -24,5 +24,8 @@ router.get('/create', booksController.create);
 
 router.post('/', upload.single("image"), booksController.save);
 router.post('/delete/:id', booksController.delete);
+router.get('/edit/:id', booksController.edit);
+
+router.post('/update/:id', upload.single("image"), booksController.update);
 
 module.exports = router;

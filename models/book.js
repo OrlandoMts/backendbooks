@@ -13,5 +13,10 @@ module.exports = {
   },
   deleteBook: function(connection, data, callback) {
     connection.query("DELETE FROM books WHERE id = ?", [parseInt(data.id)], callback);
+  },
+  updateBookName: function(connection, data, image, param, callback){
+    connection.query("UPDATE books SET name = ?, image = ?, idAuthor = ? WHERE books.id = ?",
+      [data.name, image.filename, data.idAuthor, param.id],
+      callback)
   }
 }

@@ -47,7 +47,7 @@ module.exports = {
   delete: function (req, res) {
     bookModel.getBookById(con, req.params, (err, rows) => {
       //Asi obtengo la ruta de la imagen
-      let imageRoute = "public/images/" + rows[0].image;
+      let imageRoute = "public/images/" + (rows[0].image);
 
       //Busco primero si existe la imagen y con unlinkSync la borro
       if(fileSystem.existsSync(imageRoute)) {
@@ -62,5 +62,46 @@ module.exports = {
         }
       })
     })
+  },
+  //Solo es para renderizar una vista y mostrar los datos del libro a actualizar
+  edit: function (req, res) {
+    authorModel.getAuthors(con, (err, data) => {
+      // console.log(req.params)
+      bookModel.getBookById(con, req.params, (err, row) => {
+
+        if (err) {
+          res.send(err)
+        } else {
+          const context = {
+              title: "Editar el libro",
+              authors: data,
+              book: row[0]
+          }
+          res.render('books/editView', context)
+        }
+      })
+    });
+  },
+
+  update: function(req, res){
+    // si los tres campos son recibidos
+    if(req.file || req.body.name || req.body.idAuthor) {
+      bookModel.getBookById(con, req.params, (err, rows) => {
+        //Asi obtengo la ruta de la imagen
+        let imageRoute = "public/images/" + (rows[0].image);
+
+        //Busco primero si existe la imagen y con unlinkSync la borro
+        if(fileSystem.existsSync(imageRoute)) {
+          fileSystem.unlinkSync(imageRoute)
+        }
+
+        bookModel.updateBookName(con, req.body, req.file, req.params, (err) => {
+          if(err) {
+            res.send(err)
+          }
+        })
+      })
+    }
+    res.redirect('/books');
   }
 };

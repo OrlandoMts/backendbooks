@@ -28,7 +28,7 @@
             <td> <img class="img-thumbnail" width="100" src="images/<%=books[book].image %>" alt=""> </td>
             <td>
               <div class="btn-group-vertical" role="group" aria-label="Vertical button group">
-                <form class="form-inline" method="post" action="books/edit/<%= books[book].id %> ">
+                <form class="form-inline" method="get" action="books/edit/<%= books[book].id %> ">
                   <button class="btn btn-warning" type="submit">Editar</button>
                 </form>
               </div>
